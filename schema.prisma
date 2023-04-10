@@ -1,5 +1,5 @@
 datasource db {
-    url      = ""
+    url      = "postgresql://test-user:test-pass@localhost:5432/test-db?schema=public"
     provider = "postgresql"
 }
 
