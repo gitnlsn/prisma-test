@@ -24,12 +24,12 @@ npx jest --runInBand --detectOpenHandles user.test.ts
 
 # Results
 
-No issues fould with `CustomGC`,
+Issue found with `CustomGC`,
 
 ```sh
-nelson@latitude 01:08:00 ~/d/prismatest (prisma-4.8.1)> bash scripts/test.sh
+nelson@latitude 01:18:20 ~/d/prismatest (prisma-4.12.0)> bash scripts/test.sh
 
-added 8 packages, removed 5 packages, changed 5 packages, and audited 292 packages in 8s
+added 291 packages, and audited 292 packages in 4s
 
 31 packages are looking for funding
   run `npm fund` for details
@@ -37,7 +37,7 @@ added 8 packages, removed 5 packages, changed 5 packages, and audited 292 packag
 found 0 vulnerabilities
 [+] Running 2/2
  ⠿ Network prismatest_docker-net    Created                                                                                                      0.0s
- ⠿ Container prismatest-postgres-1  Started                                                                                                      0.4s
+ ⠿ Container prismatest-postgres-1  Started                                                                                                      0.6s
 Prisma schema loaded from schema.prisma
 Datasource "db": PostgreSQL database "test-db", schema "public" at "localhost:5432"
 
@@ -51,22 +51,16 @@ migrations/
 
 Your database is now in sync with your schema.
 
-✔ Generated Prisma Client (4.8.1 | library) to ./node_modules/@prisma/client in 135ms
+✔ Generated Prisma Client (4.12.0 | library) to ./node_modules/@prisma/client in 83ms
 
 
-┌─────────────────────────────────────────────────────────┐
-│  Update available 4.8.1 -> 4.12.0                       │
-│  Run the following to update                            │
-│    npm i --save-dev prisma@latest                       │
-│    npm i @prisma/client@latest                          │
-└─────────────────────────────────────────────────────────┘
- PASS  ./sum.test.ts
  PASS  ./sum.test.js
+ PASS  ./sum.test.ts
 
 Test Suites: 2 passed, 2 total
 Tests:       2 passed, 2 total
 Snapshots:   0 total
-Time:        1.834 s
+Time:        1.806 s
 Ran all test suites matching /sum.js|sum.test.js|sum.test.ts|sum.ts/i.
  PASS  ./user.test.ts
  PASS  ./sum.test.ts
@@ -75,11 +69,30 @@ Ran all test suites matching /sum.js|sum.test.js|sum.test.ts|sum.ts/i.
 Test Suites: 3 passed, 3 total
 Tests:       3 passed, 3 total
 Snapshots:   0 total
-Time:        2.148 s, estimated 4 s
+Time:        2.093 s, estimated 4 s
 Ran all test suites.
+
+Jest has detected the following 1 open handle potentially keeping Jest from exiting:
+
+  ●  CustomGC
+
+      at Runtime._loadModule (node_modules/jest-runtime/build/index.js:1009:29)
+      at load (node_modules/@prisma/client/runtime/library.js:73:326)
+      at node_modules/@prisma/client/runtime/library.js:73:759
+      at runInChildSpan (node_modules/@prisma/client/runtime/library.js:70:25817)
+      at qr.loadLibrary (node_modules/@prisma/client/runtime/library.js:73:677)
+      at zt.loadEngine (node_modules/@prisma/client/runtime/library.js:101:557)
+      at zt.instantiateLibrary (node_modules/@prisma/client/runtime/library.js:100:1477)
+      at zt.start (node_modules/@prisma/client/runtime/library.js:101:2081)
+      at zt.getDmmf (node_modules/@prisma/client/runtime/library.js:101:3489)
+      at node_modules/@prisma/client/runtime/library.js:177:2864
+      at node_modules/@prisma/client/runtime/library.js:177:3294
+      at t._executeRequest (node_modules/@prisma/client/runtime/library.js:177:10748)
+      at t._request (node_modules/@prisma/client/runtime/library.js:177:10477)
+
 [+] Running 2/2
- ⠿ Container prismatest-postgres-1  Removed                                                                                                      0.3s
+ ⠿ Container prismatest-postgres-1  Removed                                                                                                      0.4s
  ⠿ Network prismatest_docker-net    Removed                                                                                                      0.1s
-nelson@latitude 01:08:37 ~/d/prismatest (prisma-4.8.1)>
+nelson@latitude 01:18:38 ~/d/prismatest (prisma-4.12.0)> 
 
 ```
