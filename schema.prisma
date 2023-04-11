@@ -1,5 +1,5 @@
 datasource db {
-    url      = "postgresql://test-user:test-pass@localhost:5432/test-db?schema=public"
+    url      = "postgresql://prisma:prisma@localhost:5433/test-db?schema=public"
     provider = "postgresql"
 }
 
